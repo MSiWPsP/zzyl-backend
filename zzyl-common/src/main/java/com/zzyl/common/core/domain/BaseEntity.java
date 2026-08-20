@@ -4,42 +4,71 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Entity基类
- * 
+ *
  * @author ruoyi
  */
+@ApiModel(description = "实体类公共基础字段")
 public class BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     /** 搜索值 */
     @JsonIgnore
+    @ApiModelProperty(value = "搜索值", hidden = true)
+    @TableField(exist = false)
     private String searchValue;
 
     /** 创建者 */
+    @ApiModelProperty(value = "创建者", example = "admin")
+    @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
     /** 创建时间 */
+    @ApiModelProperty(
+            value = "创建时间",
+            example = "2026-08-18 18:00:00"
+    )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /** 更新者 */
+    @ApiModelProperty(value = "更新者", example = "admin")
+    @TableField(fill = FieldFill.UPDATE)
     private String updateBy;
 
     /** 更新时间 */
+    @ApiModelProperty(
+            value = "更新时间",
+            example = "2026-08-18 18:00:00"
+    )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
 
     /** 备注 */
+    @ApiModelProperty(value = "备注", example = "护理项目备注信息")
     private String remark;
 
     /** 请求参数 */
+    @ApiModelProperty(
+            value = "额外请求参数",
+            hidden = true
+    )
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @TableField(exist = false)
     private Map<String, Object> params;
 
     public String getSearchValue()
@@ -108,6 +137,7 @@ public class BaseEntity implements Serializable
         {
             params = new HashMap<>();
         }
+
         return params;
     }
 
