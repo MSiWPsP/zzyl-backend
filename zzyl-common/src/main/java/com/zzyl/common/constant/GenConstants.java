@@ -114,4 +114,13 @@ public class GenConstants
 
     /** 需要 */
     public static final String REQUIRE = "1";
+
+    /** 时间类型*/
+    public static final String TYPE_LOCAL_DATE_TIME = "LocalDateTime";
+
+    /** 整形*/
+    public static final String MYSQL_TYPE_INT = "int";
+
+    /** 整形*/
+    public static final String MYSQL_TYPE_TINY_INT = "tinyint";
 }
