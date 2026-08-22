@@ -100,9 +100,9 @@ public class NursingPlanController extends BaseController
     @Log(title = "护理计划", businessType = BusinessType.UPDATE)
     @PutMapping
     @ApiOperation("修改护理计划")
-    public AjaxResult edit(@ApiParam(value = "护理计划实体", required = true)  @RequestBody NursingPlan nursingPlan)
+    public AjaxResult edit(@ApiParam(value = "护理计划实体", required = true)  @RequestBody NursingPlanDto nursingPlanDto)
     {
-        return toAjax(nursingPlanService.updateNursingPlan(nursingPlan));
+        return toAjax(nursingPlanService.updateNursingPlan(nursingPlanDto));
     }
 
     /**
@@ -110,10 +110,10 @@ public class NursingPlanController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('nursing:plan:remove')")
     @Log(title = "护理计划", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
+    @DeleteMapping("/{id}")
     @ApiOperation("删除护理计划")
-    public AjaxResult remove(@ApiParam(value = "护理计划ID数组", required = true) @PathVariable Long[] ids)
+    public AjaxResult remove(@ApiParam(value = "护理计划ID数组", required = true) @PathVariable Long id)
     {
-        return toAjax(nursingPlanService.deleteNursingPlanByIds(ids));
+        return toAjax(nursingPlanService.deleteNursingPlanById(id));
     }
 }

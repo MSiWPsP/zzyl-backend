@@ -1,6 +1,7 @@
 package com.zzyl.nursing.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zzyl.nursing.vo.NursingProjectPlanVo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -79,4 +80,13 @@ public interface NursingProjectPlanMapper extends BaseMapper<NursingProjectPlan>
      * @return 护理项目计划关联
      */
     List<NursingProjectPlanVo> selectNursingProjectPlanByPlanId(Long planId);
+
+    /**
+     * 根据计划id删除护理项目计划关联
+     *
+      * @param planId 计划id
+     * @return 结果
+     */
+    @Delete("delete from nursing_project_plan where plan_id = #{planId}")
+    void deleteByPlanId(Long planId);
 }
