@@ -99,14 +99,34 @@ public class NursingPlanServiceImpl extends ServiceImpl<NursingPlanMapper,Nursin
     /**
      * 修改护理计划
      *
-     * @param nursingPlan 护理计划
+     * @param nursingPlanDto 护理计划
      * @return 结果
      */
     @Override
-    public int updateNursingPlan(NursingPlan nursingPlan)
+    @Transactional(rollbackFor = Exception.class)
+    public int updateNursingPlan(NursingPlanDto nursingPlanDto)
     {
-        nursingPlan.setUpdateTime(DateUtils.getNowDate());
+        //更新 计划护理项目中间表
+        List<NursingProjectPlan> projectPlans = nursingPlanDto.getProjectPlans();
+        if (projectPlans != null && !projectPlans.isEmpty())
+        {
+            //删除
+            nursingProjectPlanMapper.deleteByPlanId(nursingPlanDto.getId());
+
+            //新增
+            nursingProjectPlanMapper.batchInsert(
+                    projectPlans,
+                    nursingPlanDto.getId()
+            );
+        }
+
+        //更新 计划表
+        NursingPlan nursingPlan = new NursingPlan();
+
+        BeanUtils.copyProperties(nursingPlanDto,nursingPlan);
+
         return updateById(nursingPlan) ? 1 : 0;
+
     }
 
     /**
@@ -128,8 +148,13 @@ public class NursingPlanServiceImpl extends ServiceImpl<NursingPlanMapper,Nursin
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteNursingPlanById(Long id)
     {
+        //删除中间表
+        nursingProjectPlanMapper.deleteByPlanId(id);
+
+        //删除计划表
         return removeById(id) ? 1 : 0;
     }
 }
