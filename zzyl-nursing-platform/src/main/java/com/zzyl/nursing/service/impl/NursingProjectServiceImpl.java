@@ -2,6 +2,8 @@ package com.zzyl.nursing.service.impl;
 
 import java.util.List;
 import java.util.Arrays;
+
+import com.zzyl.nursing.vo.NursingProjectVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -91,5 +93,15 @@ public class NursingProjectServiceImpl extends ServiceImpl<NursingProjectMapper,
     public int deleteNursingProjectById(Long id)
     {
         return removeById(id) ? 1 : 0;
+    }
+
+    /**
+     * 查询所有护理项目
+     *
+     * @return 护理项目集合
+     */
+    @Override
+    public List<NursingProjectVO> selectAll() {
+        return nursingProjectMapper.selectAll();
     }
 }
