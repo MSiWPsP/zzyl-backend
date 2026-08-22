@@ -79,7 +79,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${Cl
         insert${subClassName}(${className});
         return rows;
 #else
-        //return ${className}Mapper.insert${ClassName}(${className});
          return save(${className}) ? 1 : 0;
 #end
     }
@@ -105,7 +104,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${Cl
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${className}.get${pkColumn.capJavaField}());
         insert${subClassName}(${className});
 #end
-        //return ${className}Mapper.update${ClassName}(${className});
         return updateById(${className}) ? 1 : 0;
     }
 
@@ -124,7 +122,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${Cl
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(${pkColumn.javaField}s);
 #end
-        //return ${className}Mapper.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s);
         return removeByIds(Arrays.asList(${pkColumn.javaField}s)) ? 1 : 0;
     }
 
@@ -143,7 +140,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${Cl
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
 #end
-        //return ${className}Mapper.delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
         return removeById(${pkColumn.javaField}) ? 1 : 0;
     }
 #if($table.sub)

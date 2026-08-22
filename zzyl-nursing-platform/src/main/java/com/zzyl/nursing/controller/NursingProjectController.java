@@ -1,9 +1,11 @@
 package com.zzyl.nursing.controller;
 
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zzyl.common.core.domain.R;
+import com.zzyl.nursing.vo.NursingProjectVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -143,4 +145,13 @@ public class NursingProjectController extends BaseController
         nursingProjectService.deleteNursingProjectByIds(ids);
         return R.ok();
     }
+
+    @GetMapping("/all")
+    @ApiOperation("查询所有护理项目")
+    public AjaxResult listAll(){
+        List<NursingProjectVO> list = nursingProjectService.selectAll();
+        return success(list);
+    }
+
+
 }
