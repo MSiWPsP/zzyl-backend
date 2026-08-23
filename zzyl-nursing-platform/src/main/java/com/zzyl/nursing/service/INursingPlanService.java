@@ -1,6 +1,8 @@
 package com.zzyl.nursing.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.zzyl.nursing.domain.NursingPlan;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zzyl.nursing.dto.NursingPlanDto;
@@ -62,4 +64,11 @@ public interface INursingPlanService extends IService<NursingPlan>
      * @return 结果
      */
     public int deleteNursingPlanById(Long id);
+
+    /**
+     * 查询所有护理计划
+     *
+     * @return 护理计划集合
+     */
+    List<Map<String, Object>> selectAll();
 }

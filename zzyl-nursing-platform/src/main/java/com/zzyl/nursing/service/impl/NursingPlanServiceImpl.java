@@ -1,7 +1,11 @@
 package com.zzyl.nursing.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.zzyl.common.utils.DateUtils;
 import com.zzyl.nursing.domain.NursingProjectPlan;
 import com.zzyl.nursing.dto.NursingPlanDto;
@@ -156,5 +160,15 @@ public class NursingPlanServiceImpl extends ServiceImpl<NursingPlanMapper,Nursin
 
         //删除计划表
         return removeById(id) ? 1 : 0;
+    }
+
+    /**
+     * 查询所有护理计划
+     *
+     * @return 护理计划集合
+     */
+    @Override
+    public List<Map<String, Object>> selectAll() {
+        return nursingPlanMapper.selectEnablePlans();
     }
 }
