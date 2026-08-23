@@ -116,4 +116,10 @@ public class NursingPlanController extends BaseController
     {
         return toAjax(nursingPlanService.deleteNursingPlanById(id));
     }
+
+    @GetMapping("/all")
+    @ApiOperation("查询所有护理计划")
+    public AjaxResult listAll(){
+        return success(nursingPlanService.selectAll());
+    }
 }
