@@ -34,11 +34,18 @@
         <lombok.version>1.18.22</lombok.version>
         <mybatis-plus-spring-boot.version>3.5.2</mybatis-plus-spring-boot.version>
         <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>
+        <hutool-all.version>5.8.10</hutool-all.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!-- Hutool工具类 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
             <!-- 阿里云OSS -->
             <dependency>
                 <groupId>com.aliyun.oss</groupId>

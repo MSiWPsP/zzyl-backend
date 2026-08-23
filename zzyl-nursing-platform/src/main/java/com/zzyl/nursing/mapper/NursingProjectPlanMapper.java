@@ -1,17 +1,19 @@
 package com.zzyl.nursing.mapper;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zzyl.nursing.vo.NursingProjectPlanVo;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import com.zzyl.nursing.domain.NursingProjectPlan;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 护理计划和项目关联Mapper接口
  * 
- * @author XuCheng
- * @date 2026-08-22
+ * @author alexis
+ * @date 2024-12-31
  */
 @Mapper
 public interface NursingProjectPlanMapper extends BaseMapper<NursingProjectPlan>
@@ -65,28 +67,32 @@ public interface NursingProjectPlanMapper extends BaseMapper<NursingProjectPlan>
     public int deleteNursingProjectPlanByIds(Long[] ids);
 
     /**
-     * 批量新增护理计划和项目关联
-     *
-     * @param projectPlans 护理计划和项目关联
-     * @param id
-     * @return 结果
+     * 批量保存护理计划关联的护理项目
+     * @param projectPlans  护理计划关联的护理项目集合
+     * @param planId    护理计划id
+     * @return
      */
-    public int batchInsert(@Param("list") List<NursingProjectPlan> projectPlans,@Param("planId") Long id);
+    int insertBatch(@Param("projectPlans") List<NursingProjectPlan> projectPlans, @Param("planId") Long planId);
+
 
     /**
-     * 根据计划id查询护理项目计划关联
-     *
-     * @param  planId 计划id
-     * @return 护理项目计划关联
+     * 根据护理计划id查询关联的护理项目列表
+     * @param planId
+     * @return
      */
-    List<NursingProjectPlanVo> selectNursingProjectPlanByPlanId(Long planId);
+    @Select("select id, plan_id, project_id, execute_time, execute_cycle, execute_frequency, create_time, update_time, create_by, update_by, remark from nursing_project_plan where plan_id = #{planId}")
+    List<NursingProjectPlanVo> getProjectListByPlanId(@Param("planId") Long planId);
 
     /**
-     * 根据计划id删除护理项目计划关联
-     *
-      * @param planId 计划id
-     * @return 结果
+     * 根据护理计划id删除关联的护理项目
+     * @param planId    护理计划id
      */
     @Delete("delete from nursing_project_plan where plan_id = #{planId}")
-    void deleteByPlanId(Long planId);
+    void deleteByPlanId(@Param("planId") Long planId);
+
+    /**
+     * 根据护理计划id集合批量删除关联的护理项目
+     * @param ids  护理计划id集合
+     */
+    void batchDeleteByPlanIds(@Param("ids") List<Long> ids);
 }

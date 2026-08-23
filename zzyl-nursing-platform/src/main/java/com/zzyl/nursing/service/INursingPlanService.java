@@ -1,19 +1,16 @@
 package com.zzyl.nursing.service;
 
 import java.util.List;
-import java.util.Map;
-
 import com.zzyl.nursing.domain.NursingPlan;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zzyl.nursing.dto.NursingPlanDto;
 import com.zzyl.nursing.vo.NursingPlanVo;
-import com.zzyl.nursing.vo.NursingProjectPlanVo;
 
 /**
  * 护理计划Service接口
  * 
- * @author XuCheng
- * @date 2026-08-21
+ * @author alexis
+ * @date 2024-12-30
  */
 public interface INursingPlanService extends IService<NursingPlan>
 {
@@ -36,10 +33,10 @@ public interface INursingPlanService extends IService<NursingPlan>
     /**
      * 新增护理计划
      * 
-      * @param nursingPlan 护理计划
+     * @param nursingPlanDto 护理计划
      * @return 结果
      */
-    public int insertNursingPlan(NursingPlanDto nursingPlan);
+    public int insertNursingPlan(NursingPlanDto nursingPlanDto);
 
     /**
      * 修改护理计划
@@ -67,8 +64,7 @@ public interface INursingPlanService extends IService<NursingPlan>
 
     /**
      * 查询所有护理计划
-     *
-     * @return 护理计划集合
+     * @return 护理计划列表
      */
-    List<Map<String, Object>> selectAll();
+    List<NursingPlan> getAllNursingPlans();
 }

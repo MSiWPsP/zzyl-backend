@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--suppress ALL -->
 <mapper namespace="com.zzyl.nursing.mapper.NursingPlanMapper">
     
     <resultMap type="NursingPlan" id="NursingPlanResult">
@@ -24,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectNursingPlanList" parameterType="NursingPlan" resultMap="NursingPlanResult">
         <include refid="selectNursingPlanVo"/>
         <where>  
+            <if test="sortNo != null "> and sort_no = #{sortNo}</if>
             <if test="planName != null  and planName != ''"> and plan_name like concat('%', #{planName}, '%')</if>
             <if test="status != null "> and status = #{status}</if>
         </where>
