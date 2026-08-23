@@ -17,6 +17,13 @@
 
     <dependencies>
 
+        <!--hutool工具包-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+
         <!-- Spring框架基本的核心工具 -->
         <dependency>
             <groupId>org.springframework</groupId>

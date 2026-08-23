@@ -146,3 +146,5 @@ aliyun:
   oss:
     endpoint: https://oss-cn-shanghai.aliyuncs.com
     bucketName: xucheng-zzyl
+dept:
+  nursingId: 201
