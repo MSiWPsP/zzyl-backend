@@ -35,7 +35,7 @@ import com.zzyl.common.core.domain.BaseEntity;
 
                 /** 合同名称 */
                 @Excel(name = "合同名称")
-        @ApiModelProperty("合同名称")
+        @ApiModelProperty("合同名称")       
         private String contractName;
 
                 /** 合同编号 */

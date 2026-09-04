@@ -1,6 +1,8 @@
 package com.zzyl.nursing.controller;
 
 import com.zzyl.common.core.domain.R;
+import com.zzyl.nursing.dto.CheckInApplyDto;
+import com.zzyl.nursing.vo.CheckInDetailVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -112,5 +114,18 @@ public class CheckInController extends BaseController
     public AjaxResult remove(@ApiParam(value = "入住信息ID数组", required = true) @PathVariable Long[] ids)
     {
         return toAjax(checkInService.deleteCheckInByIds(ids));
+    }
+
+    @PostMapping("/apply")
+    @ApiOperation("申请入住")
+    public AjaxResult apply(@RequestBody CheckInApplyDto checkInApplyDto){
+        checkInService.apply(checkInApplyDto);
+        return success();
+    }
+
+    @GetMapping("/detail/{id}")
+    public R<CheckInDetailVo> detail(@PathVariable Long id){
+        CheckInDetailVo checkInDetailVo = checkInService.detail(id);
+        return R.ok(checkInDetailVo);
     }
 }

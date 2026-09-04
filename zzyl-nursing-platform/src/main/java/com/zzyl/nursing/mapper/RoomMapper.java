@@ -64,7 +64,27 @@ public interface RoomMapper extends BaseMapper<Room>
      */
     public int deleteRoomByIds(Long[] ids);
 
+    /**
+     * 根据楼层 id 获取房间视图对象列表
+     *
+     * @param floorId
+     * @return
+     */
     List<RoomVo> selectByFloorId(Long floorId);
 
+    /**
+     * 根据楼层 id 获取房间视图对象列表
+     *
+     * @param floorId
+     * @return
+     */
     List<RoomVo> selectByFloorIdWithNur(Long floorId);
+
+    /**
+     * 根据房间 id 获取房间视图对象
+     *
+     * @param id
+     * @return
+     */
+    RoomVo getRoomById(Long id);
 }

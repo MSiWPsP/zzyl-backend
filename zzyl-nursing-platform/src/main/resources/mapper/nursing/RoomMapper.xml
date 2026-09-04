@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress ALL -->
 <mapper namespace="com.zzyl.nursing.mapper.RoomMapper">
     
     <resultMap type="Room" id="RoomResult">
@@ -118,6 +119,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where r.floor_id = #{floorId}
           and e.id is not null
         order by r.sort, r.create_time desc
+    </select>
+    <select id="getRoomById" resultType="com.zzyl.nursing.vo.RoomVo">
+        select f.name floorName,f.id floorId,r.id roomId,r.code,t.price from floor f
+         left join room r on f.id = r.floor_id
+         left join room_type t on r.type_name = t.name
+         where r.id = #{id} 
     </select>
 
 
