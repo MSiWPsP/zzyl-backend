@@ -52,7 +52,8 @@ spring:
     # 国际化资源文件路径
     basename: i18n/messages
   profiles:
-    active: druid
+    active:
+        - druid
   # 文件上传
   servlet:
     multipart:
@@ -130,7 +131,7 @@ swagger:
   # 是否开启swagger
   enabled: true
   # 请求前缀
-  pathMapping: /dev-api
+  pathMapping: /
 
 # 防止XSS攻击
 xss:
@@ -148,3 +149,8 @@ aliyun:
     bucketName: xucheng-zzyl
 dept:
   nursingId: 201
+ai:
+  bailian:
+    api-key: ${AI_DASHSCOPE_API_KEY}
+    base-url: https://ws-o9lujwrkuwzjfx0k.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+    model: qwen3.7-plus

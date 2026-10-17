@@ -227,8 +227,6 @@
                 <artifactId>zzyl-oss</artifactId>
                 <version>${zzyl.version}</version>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -255,6 +253,11 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
             </plugin>
         </plugins>
     </build>
