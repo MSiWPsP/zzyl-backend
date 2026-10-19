@@ -45,6 +45,11 @@ public interface IContractService extends IService<Contract>
     public int updateContract(Contract contract);
 
     /**
+     * 更新合同状态
+     */
+    public void updateContractStatus();
+
+    /**
      * 批量删除合同
      * 
      * @param ids 需要删除的合同主键集合

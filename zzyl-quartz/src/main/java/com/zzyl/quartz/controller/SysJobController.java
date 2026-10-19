@@ -1,7 +1,13 @@
 package com.zzyl.quartz.controller;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
+import org.quartz.CronExpression;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.zzyl.common.annotation.Log;
 import com.zzyl.common.constant.Constants;
@@ -38,6 +45,35 @@ public class SysJobController extends BaseController
 {
     @Autowired
     private ISysJobService jobService;
+
+    /**
+     * 使用 Quartz 校验表达式并预览接下来的五次执行时间。
+     */
+    @PreAuthorize("@ss.hasAnyPermi('monitor:job:add,monitor:job:edit')")
+    @GetMapping("/cronPreview")
+    public AjaxResult cronPreview(@RequestParam("expression") String expression) throws ParseException
+    {
+        Map<String, Object> data = new HashMap<>();
+        boolean valid = CronUtils.isValid(expression);
+        data.put("valid", valid);
+        List<Long> times = new ArrayList<>();
+        if (valid)
+        {
+            CronExpression cron = new CronExpression(expression);
+            Date next = new Date();
+            for (int i = 0; i < 5; i++)
+            {
+                next = cron.getNextValidTimeAfter(next);
+                if (next == null)
+                {
+                    break;
+                }
+                times.add(next.getTime());
+            }
+        }
+        data.put("times", times);
+        return success(data);
+    }
 
     /**
      * 查询定时任务列表
