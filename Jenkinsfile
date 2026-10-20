@@ -57,6 +57,10 @@ pipeline {
                    string(
                        credentialsId: 'oss-access-key-secret',
                        variable: 'OSS_ACCESS_KEY_SECRET'
+                   ),
+                   string(
+                       credentialsId: 'ai-dashscope-api-key',
+                       variable: 'AI_DASHSCOPE_API_KEY'
                    )
                ]) {
                    script {

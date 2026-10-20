@@ -32,5 +32,6 @@ if [ $container_name = "zzyl-admin" ]; then
      -p 9000:9000 \
      -e OSS_ACCESS_KEY_ID \
      -e OSS_ACCESS_KEY_SECRET \
+     -e AI_DASHSCOPE_API_KEY \
      "$image_name:$image_tag"
 fi
