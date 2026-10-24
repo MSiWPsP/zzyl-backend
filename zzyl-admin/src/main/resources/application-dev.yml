@@ -210,3 +210,6 @@ ai:
     api-key: ${AI_DASHSCOPE_API_KEY}
     base-url: https://ws-o9lujwrkuwzjfx0k.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
     model: qwen3.7-plus
+wechat:
+  appid: wxc2b7d208fd36b1e8
+  secret: e9994369e13d6675b4ba00d5b00c8b1f
