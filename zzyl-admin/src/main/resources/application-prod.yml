@@ -211,3 +211,15 @@ ai:
     api-key: ${AI_DASHSCOPE_API_KEY}
     base-url: https://ws-o9lujwrkuwzjfx0k.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
     model: qwen3.7-plus
+huaweicloud:
+  ak: ${HW_ACCESS_KEY}
+  sk: ${HW_SECRET_KEY}
+  #如果是上海一，请填写"cn-east-3"；如果是北京四，请填写"cn-north-4";
+  regionId: cn-east-3
+  endpoint: 171e3dcb81.st1.iotda-app.cn-east-3.myhuaweicloud.com
+  projectId: 01a172dbe04278e5aef431087fde0a93
+  #amqp相关配置 第二天课程接收设备数据使用
+  host: 171e3dcb81.st1.iotda-app.cn-east-3.myhuaweicloud.com
+  accessKey: ${AMQP_ACCESS_KEY}
+  accessCode: ${AMQP_ACCESS_CODE}
+  queueName: DefaultQueue   #默认无需改动
